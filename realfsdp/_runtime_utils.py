@@ -5,13 +5,13 @@ from typing import Any, Callable, Dict, List, no_type_check, Optional, Set, Tupl
 
 import torch
 import torch.distributed as dist
-import torch.distributed.fsdp._traversal_utils as traversal_utils
+import realfsdp._traversal_utils as traversal_utils
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 from torch.autograd.graph import register_multi_grad_hook
 from torch.distributed.algorithms._comm_hooks import LOW_PRECISION_HOOKS
-from torch.distributed.fsdp._common_utils import (
+from ._common_utils import (
     _assert_in_training_states,
     _FSDPState,
     _get_module_fsdp_state,
@@ -21,15 +21,15 @@ from torch.distributed.fsdp._common_utils import (
     clean_tensor_name,
     TrainingState,
 )
-from torch.distributed.fsdp._flat_param import (
+from ._flat_param import (
     FlatParameter,
     FlatParamHandle,
     HandleShardingStrategy,
     HandleTrainingState,
     RESHARD_AFTER_FORWARD_HANDLE_STRATEGIES,
 )
-from torch.distributed.fsdp._init_utils import HYBRID_SHARDING_STRATEGIES
-from torch.distributed.fsdp.api import BackwardPrefetch
+from ._init_utils import HYBRID_SHARDING_STRATEGIES
+from .api import BackwardPrefetch
 from torch.distributed.utils import (
     _apply_to_tensors,
     _cast_forward_inputs,

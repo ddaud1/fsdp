@@ -22,13 +22,13 @@ from typing import (
 
 import torch
 import torch.distributed as dist
-import torch.distributed.fsdp._traversal_utils as traversal_utils
+import realfsdp._traversal_utils as traversal_utils
 import torch.nn as nn
 from torch.distributed._shard.sharded_tensor import ShardedTensor
 from torch.distributed._state_dict_utils import _gather_state_dict
 from torch.distributed._tensor import DTensor, Replicate
 from torch.distributed.distributed_c10d import _get_pg_default_device
-from torch.distributed.fsdp._common_utils import (
+from ._common_utils import (
     _apply_to_modules,
     _FSDPState,
     _get_module_fsdp_state_if_fully_sharded_module,
@@ -37,17 +37,17 @@ from torch.distributed.fsdp._common_utils import (
     _named_parameters_with_duplicates,
     clean_tensor_name,
 )
-from torch.distributed.fsdp._debug_utils import SimpleProfiler
-from torch.distributed.fsdp._flat_param import FlatParameter, FlatParamHandle
-from torch.distributed.fsdp._fsdp_extensions import (
+from ._debug_utils import SimpleProfiler
+from ._flat_param import FlatParameter, FlatParamHandle
+from ._fsdp_extensions import (
     _ext_chunk_dtensor,
     _ext_chunk_tensor,
 )
-from torch.distributed.fsdp._runtime_utils import (
+from ._runtime_utils import (
     _lazy_init,
     _reset_flat_param_grad_info_if_needed,
 )
-from torch.distributed.fsdp.api import (
+from .api import (
     ShardingStrategy,
     StateDictSettings,
     StateDictType,
