@@ -3,9 +3,9 @@ import warnings
 from typing import cast, Generator
 
 import torch
-import torch.distributed.fsdp._traversal_utils as traversal_utils
+import realfsdp._traversal_utils as traversal_utils
 import torch.nn as nn
-from torch.distributed.fsdp._common_utils import (
+from ._common_utils import (
     _FSDPState,
     _get_module_fsdp_state,
     _has_fsdp_params,
@@ -13,7 +13,7 @@ from torch.distributed.fsdp._common_utils import (
     HandleTrainingState,
     TrainingState,
 )
-from torch.distributed.fsdp._runtime_utils import (
+from ._runtime_utils import (
     _lazy_init,
     _reset_flat_param_grad_info_if_needed,
     _reshard,

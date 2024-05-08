@@ -5,10 +5,10 @@ from typing import Dict, List, Optional, Tuple, Union
 
 import torch
 import torch.distributed as dist
-import torch.distributed.fsdp._traversal_utils as traversal_utils
+import realfsdp._traversal_utils as traversal_utils
 import torch.nn as nn
-from torch.distributed.fsdp._common_utils import _FSDPState, _get_param_to_fqns
-from torch.distributed.fsdp._flat_param import FlatParamHandle
+from ._common_utils import _FSDPState, _get_param_to_fqns
+from ._flat_param import FlatParamHandle
 
 
 class _ExecOrderWarnStatus(Enum):

@@ -23,7 +23,7 @@ from typing import (
 
 import torch
 import torch.distributed as dist
-import torch.distributed.fsdp._traversal_utils as traversal_utils
+import realfsdp._traversal_utils as traversal_utils
 import torch.nn as nn
 from torch.distributed._tensor import DeviceMesh
 from torch.distributed.algorithms._checkpoint.checkpoint_wrapper import (
@@ -31,15 +31,15 @@ from torch.distributed.algorithms._checkpoint.checkpoint_wrapper import (
     ActivationWrapper,
 )
 from torch.distributed.algorithms._comm_hooks import LOW_PRECISION_HOOKS
-from torch.distributed.fsdp._common_utils import (
+from ._common_utils import (
     _FSDPState,
     _get_param_to_fqns,
     FSDP_PREFIX,
     FSDP_WRAPPED_MODULE,
     TrainingState,
 )
-from torch.distributed.fsdp._dynamo_utils import _annotate_modules_for_dynamo
-from torch.distributed.fsdp._init_utils import (
+from ._dynamo_utils import _annotate_modules_for_dynamo
+from ._init_utils import (
     _check_orig_params_flattened,
     _init_buffer_state,
     _init_core_state,
@@ -54,7 +54,7 @@ from torch.distributed.fsdp._init_utils import (
     HYBRID_SHARDING_STRATEGIES,
     ProcessGroupType,
 )
-from torch.distributed.fsdp._runtime_utils import (
+from ._runtime_utils import (
     _get_fsdp_root_states,
     _is_fsdp_root,
     _lazy_init,
@@ -64,8 +64,8 @@ from torch.distributed.fsdp._runtime_utils import (
     _pre_forward_unshard,
     _root_pre_forward,
 )
-from torch.distributed.fsdp._wrap_utils import _auto_wrap
-from torch.distributed.fsdp.api import (
+from ._wrap_utils import _auto_wrap
+from .api import (
     BackwardPrefetch,
     CPUOffload,
     FullOptimStateDictConfig,

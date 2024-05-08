@@ -7,8 +7,8 @@ from typing import Dict, Iterator, List, Set, Tuple
 
 import torch
 import torch.distributed as dist
-import torch.distributed.fsdp._flat_param as flat_param_file
-from torch.distributed.fsdp._common_utils import (
+import realfsdp._flat_param as flat_param_file
+from ._common_utils import (
     _apply_to_modules,
     _get_module_fsdp_state,
     clean_tensor_name,
