@@ -46,12 +46,12 @@ class RandomDataset(Dataset):
 def print_fsdp_layer_memory(model):
     wrapping_layer = 0
     for name, module in model.named_modules():
-        wrapping_layer += 1
         total_mem = 0
         for param in module.parameters(recurse=False):
             param_size = param.numel() * param.element_size()  # total number of elements times element size in bytes
             total_mem += param_size
         if total_mem > 0:  # Only print layers that have parameters
+            wrapping_layer += 1
             print(f"Layer: {name}, Memory: {total_mem / (1024 ** 2):.2f} MB")  # Convert bytes to megabytes
     print('Total number of wrapping layers:', wrapping_layer)
 
@@ -94,7 +94,7 @@ def fsdp_main(rank, world_size, args):
     test_loader = DataLoader(dataset2, batch_size=8, shuffle=True)
 
     my_auto_wrap_policy = functools.partial(
-        size_based_auto_wrap_policy, min_num_params=5e6
+        size_based_auto_wrap_policy, min_num_params=1e4
     )
     torch.cuda.set_device(rank)
 
